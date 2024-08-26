@@ -145,10 +145,10 @@ EmptySpanID(const TraceContext* ctx) {
 
 tracer::TraceContext
 GetTraceCtxFromCfg(const BaseConfig* cfg) {
-    auto trace_id = cfg->trace_id.value();
-    auto span_id = cfg->span_id.value();
+    auto trace_id = cfg->trace_id.value().data();
+    auto span_id = cfg->span_id.value().data();
     auto trace_flags = cfg->trace_flags.value();
-    return tracer::TraceContext{trace_id.data(), span_id.data(), (uint8_t)trace_flags};
+    return tracer::TraceContext{trace_id, span_id, (uint8_t)trace_flags};
 }
 
 }  // namespace knowhere::tracer
